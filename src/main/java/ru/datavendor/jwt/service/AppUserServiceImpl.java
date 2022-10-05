@@ -22,16 +22,19 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUser saveUser(AppUser appUser) {
+        log.info("Saving new User - {} to DataBase.", appUser.getUsername());
         return userRepository.save(appUser);
     }
 
     @Override
     public AppRole saveRole(AppRole appRole) {
+        log.info("Saving new Role - {} to DataBase.", appRole.getName());
         return roleRepository.save(appRole);
     }
 
     @Override
     public void addRoleToUser(String username, String roleName) {
+        log.info("Adding Role - {} to User - {}", roleName, username);
         AppUser user = userRepository.findByUsername(username);
         AppRole role = roleRepository.findByName(roleName);
         // Метод добавляет роль к пользователю и сохраняет в БД,
